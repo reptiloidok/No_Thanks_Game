@@ -1,1 +1,2 @@
+правила
 https://boardgamer.ru/Pravila-igry-no-thanks-na-russkom-yazyke
