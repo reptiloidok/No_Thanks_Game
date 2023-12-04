@@ -21,7 +21,7 @@ class Card:
         return Card(number)
 
     @staticmethod
-    def card_list(text: list | set):
+    def card_list(text: list):
         return [Card.create(number) for number in text]
 
     @staticmethod
