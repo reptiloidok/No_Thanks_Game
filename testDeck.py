@@ -19,7 +19,7 @@ def test_init_custom():
 def test_repr():
     cards = Card.card_list({5, 6, 7, 8, 9})
     deck = Deck(cards)
-    assert deck.__repr__() == '5 6 7 8 9'
+    assert repr(deck) == '5 6 7 8 9'
 
 
 def test_draw():

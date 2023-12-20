@@ -12,7 +12,16 @@ class Card:
         return f'{self.number}'
 
     def __eq__(self, other):
-        return self.number == other.number
+        return self.number == other
+
+    def __it__(self, other):
+        return self.number < other
+
+    def __gt__(self, other):
+        return self.number > other
+
+    def __sub__(self, other):
+        return self.number - other
 
     @staticmethod
     def create(number: str | int):
@@ -21,12 +30,10 @@ class Card:
         return Card(number)
 
     @staticmethod
-    def card_list(text: list):
-        return [Card.create(number) for number in text]
+    def card_list(numbers: set):
+        return [Card.create(number) for number in numbers]
 
     @staticmethod
     def all_cards():
         """ Все карты для создания колоды. """
         return [Card(number) for number in Card.NUMBERS]
-
-

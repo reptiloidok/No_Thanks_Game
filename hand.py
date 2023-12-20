@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from card import Card
 
 
@@ -31,15 +33,29 @@ class Hand:
 
     def __repr__(self):
         """ 1, 9, 4, 5  """
+        return 'последовательности карт: ' + str(self.chains) + 'кол-во фишек: ' + str(self.chips)
 
     """ Метод подсчёта очков"""
-    def sum(self):
-        sum = 0
+
+    def summ(self):
+        summ = 0
         for i in range(len(self.chains)):
-            sum += int(self.chains[i][-1])
-        return sum - self.chips
+            summ += int(self.chains[i][-1])
+        return summ - self.chips
 
     def add_card(self, card: Card):
         """ Добавляет карту в руку. """
         self.chips += card.chips
-        self.append(card)
+        self.append(card.number)
+
+    def delete_card(self):
+        pass
+
+    def is_chain(self, card):
+        t = deepcopy(self)
+        t.add_card(card)
+        return len(self.chains) >= len(t.chains)
+
+    @staticmethod
+    def create(numbers: set):
+        return Hand(Card.card_list(numbers))
