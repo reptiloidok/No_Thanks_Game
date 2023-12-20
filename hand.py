@@ -35,7 +35,8 @@ class Hand:
 
     def __repr__(self):
         """ 1, 9, 4, 5  """
-        return 'последовательности карт: ' + str(self.chains) + 'кол-во фишек: ' + str(self.chips)
+        chains = str(self.chains)
+        return 'последовательности карт: ' + chains[1:-1] + ' кол-во фишек: ' + str(self.chips)
 
     """ Метод подсчёта очков"""
 

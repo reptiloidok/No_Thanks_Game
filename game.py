@@ -6,15 +6,6 @@ class Game:
     DEFAULT_PLAYER_NAMES = ['Bob', 'Mike', 'Ivan']
     DECK_INDEX = -1
 
-    class STATUS:
-        ROUND_BEGIN = 'Начало Раунда'
-        CHOOSE_MOVE = 'Выберете что будете делать'
-        SKIP_CARD = 'Пропуск карты'
-        DRAW_CARD = 'Взятие карты'
-        ROUND_END = 'Конец раунда'
-        GAME_END = 'Конец игры'
-        ALL_STATUS = (ROUND_BEGIN, CHOOSE_MOVE, SKIP_CARD, DRAW_CARD, ROUND_END, GAME_END)
-
     def __init__(self, player_names: list[str] | None = None):
         if player_names is None:
             player_names = Game.DEFAULT_PLAYER_NAMES
@@ -23,7 +14,6 @@ class Game:
         self.players[0].interactive = True
         self.player_index = 0
         self.table_card = self.deck.draw()
-        self.__status = Game.STATUS.ROUND_BEGIN
         self.wait_interactive_action = False
 
     @staticmethod
@@ -34,15 +24,6 @@ class Game:
         g.player_index = int(game_dict['player_index'])
         return g
 
-    @property
-    def status(self):
-        return self.__status
-
-    @status.setter
-    def status(self, value):
-        if value not in self.STATUS.ALL_STATUS:
-            raise ValueError('Unknown game status ' + value)
-        self.__status = value
 
     @property
     def current_player(self):
@@ -80,6 +61,7 @@ class Game:
         self.table_card.chips += 1
 
     def run(self):
+
         running = True
         while running:
             print(f'карта на столе: {self.table_card}, кол-во фишек на ней {self.table_card.chips}')
@@ -87,10 +69,8 @@ class Game:
             hand = self.current_player.hand
             print(hand)
             if self.current_player.hand.chips == 0:
-                self.status = Game.STATUS.DRAW_CARD
                 print(f"{self.current_player.name} берет карту")
             else:
-                self.status = Game.STATUS.CHOOSE_MOVE
                 print(f"{self.current_player.name} выбирает что будет делать")
                 move = self.choose_move()
                 if move == 1:
@@ -115,6 +95,8 @@ class Game:
                 maximum = value
                 winner_name = player.name
         print(f'Конец игры, победитель! {winner_name}')
+        print("")
+        print("")
         self.player_wait()
 
 
