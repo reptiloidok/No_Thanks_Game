@@ -5,7 +5,7 @@ from hand import Hand
 class Player:
     def __init__(self, name: str, hand: Hand | None = None, interactive_player: bool = False):
         self.name = name
-        self.hand = Hand([] if hand is None else hand)
+        self.hand = Hand()
         self.interactive = interactive_player
 
     def __repr__(self):

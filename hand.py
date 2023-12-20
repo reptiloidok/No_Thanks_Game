@@ -20,6 +20,8 @@ class Hand:
     @staticmethod
     def build_chains(cards):
         chains = []
+        if cards == None:
+            return chains
         sorted_numbers = sorted(cards, reverse=True)
         current_chain = [sorted_numbers[0]]
         for i in range(1, len(sorted_numbers)):

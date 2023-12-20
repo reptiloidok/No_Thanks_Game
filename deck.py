@@ -24,6 +24,9 @@ class Deck:
         card = self.cards.pop()
         return card
 
+    def __len__(self):
+        return len(self.cards)
+
     @staticmethod
     def create(text: list):
         return Deck(Card.card_list(text))
